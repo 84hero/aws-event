@@ -1,5 +1,5 @@
 {
-    "name": "84hero/awsEnvent",
+    "name": "84hero/aws-envent",
     "description": "Response envent from aws services.",
     "keywords": ["aws", "aws envent", "aws sns","sns"],
     "license" : "BSD-3-Clause-Attribution",
