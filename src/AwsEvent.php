@@ -10,10 +10,10 @@ class AwsEvent
 
     protected $arnAction = [''];
 
-    public function __construct($token)
+    public function __construct()
     {
-        
-        $this->checkToken($token);
+
+        $this->checkToken();
 
         if ($postStr = file_get_contents('php://input')) {
             $this->logging($postStr);
@@ -26,9 +26,10 @@ class AwsEvent
         file_put_contents('logs/' . date("YmdHis") . '.log', $str, FILE_APPEND);
     }
 
-    protected function checkToken($token)
+    protected function checkToken()
     {
-        if (strtolower(@$_GET['token']) !== strtolower(md5($token))) {
+        $token = strtolower(md5(getenv('POST_ACCESS_TOKEN')));
+        if (strtolower(@$_GET['token']) !== $token) {
             $this->_return();
         }
     }
